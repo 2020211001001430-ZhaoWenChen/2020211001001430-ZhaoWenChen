@@ -5,12 +5,7 @@
   Time: 17:02
   To change this template use File | Settings | File Templates.
 --%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<html>
-<head>
-    <title>Title</title>
-</head>
-<body>
+<%@ include file="header.jsp"%>
 <form method="post" action="/register">
     <input name="username " type="text" maxlength="20" size="10" value="Username"/><br />
 
@@ -25,6 +20,5 @@
 
     <input name="submit" type="submit" id="" value="Register" />
 </form>
+<%@ include file="footer.jsp"%>
 
-</body>
-</html>

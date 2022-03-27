@@ -6,12 +6,13 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<html>
-  <head>
-    <title>  New User Registration</title>
-  </head>
-  <body>
-  New User Registration<br/>
+<%@include file="header.jsp"%>
+<h1>
+  <%="Hello World!!!"%>
+</h1>
+<br/>
+<a href="hello-servlet">Hello Servlet</a>
+<form>
   <input name="username " type="text" maxlength="20" size="10" value="Username"/><br />
 
   <input name="phone" type="text" maxlength="10" size="10"  value="password"><br />
@@ -25,5 +26,5 @@
   <input name="birth " type="text" maxlength="20" size="10" value="Date of birth"/><br />
 
   <input name="submit" type="submit" id="" value="Register" />
-  </body>
-</html>
+</form>
+<%@ include file="footer.jsp"%>

@@ -34,10 +34,10 @@ public class JDBCDemoServlet extends HttpServlet {
 
         //to get connection we need 4 variables
         //connect to sql server
-        //String driver="com.microsoft.sqlserver.jdbc.SQLServerDriver";
-        //String url="jdbc:sqlserver://localhost:1433;database=userdb;encrypt=false";
-        //String username="sa";
-        //String password="123456";
+        String driver="com.microsoft.sqlserver.jdbc.SQLServerDriver";
+        String url="jdbc:sqlserver://localhost:1433;database=userdb;encrypt=false";
+        String username="sa";
+        String password="123456";
 //        ServletConfig config=getServletConfig();
 //        String driver= config.getInitParameter("driver");
 //        String url= config.getInitParameter("url");

@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="CompilerConfiguration">
+    <option name="USE_RELEASE_OPTION" value="false" />
     <annotationProcessing>
       <profile name="Maven default annotation processors profile" enabled="true">
         <sourceOutputDir name="target/generated-sources/annotations" />
@@ -9,8 +10,8 @@
         <module name="2020211001001430zhaowenchen" />
       </profile>
     </annotationProcessing>
-    <bytecodeTargetLevel>
-      <module name="2020211001001430zhaowenchen" target="8" />
+    <bytecodeTargetLevel target="1.4">
+      <module name="2020211001001430zhaowenchen" target="1.8" />
     </bytecodeTargetLevel>
   </component>
 </project>
