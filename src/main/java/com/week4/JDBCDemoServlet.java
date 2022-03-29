@@ -24,7 +24,7 @@ import java.sql.Connection;
 //
 //)//done---use @webServlet -no web.xml code
 
-@WebServlet(urlPatterns = {"/jdbc"},loadOnStartup = 1)//only url
+//@WebServlet(urlPatterns = {"/jdbc"},loadOnStartup = 1)//only url
 public class JDBCDemoServlet extends HttpServlet {
 
     Connection con=null;
@@ -44,11 +44,7 @@ public class JDBCDemoServlet extends HttpServlet {
 //        String username= config.getInitParameter("username");
 //        String password= config.getInitParameter("password");
 
-        ServletConfig config=getServletConfig();
-        String driver=config.getInitParameter("driver");
-        String url=config.getInitParameter("url");
-        String username=config.getInitParameter("username");
-        String password=config.getInitParameter("password");
+
 
         try{
             Class.forName(driver);

@@ -11,7 +11,7 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel target="1.4">
-      <module name="2020211001001430zhaowenchen" target="1.8" />
+      <module name="2020211001001430zhaowenchen" target="8" />
     </bytecodeTargetLevel>
   </component>
 </project>
