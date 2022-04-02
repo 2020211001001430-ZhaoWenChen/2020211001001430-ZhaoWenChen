@@ -6,6 +6,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ include file="header.jsp"%>
+new User Regiseration <br/>
 <form method="post" action="/register">
     <input name="username " type="text" maxlength="20" size="10" value="Username"/><br />
 

@@ -7,24 +7,21 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@include file="header.jsp"%>
-<h1>
-  <%="Hello World!!!"%>
-</h1>
-<br/>
+
+<h1><%="Hello World!!!"%></h1><br/>
+
 <a href="hello-servlet">Hello Servlet</a>
-<form>
-  <input name="username " type="text" maxlength="20" size="10" value="Username"/><br />
 
-  <input name="phone" type="text" maxlength="10" size="10"  value="password"><br />
+  <h2>Wel come to my Online Shop Home Page.</h2><br>
+  <form method="get" target="_blank" action="search">
+    <!--<url-pattern>/search</url-pattern>-->
+    <input type="text" name="txt" size="30"/>
+    <select name="search">
+    <option value="baidu">Baidu</option>
+    <option value="bing">Bing</option>
+    <option value="google">Google</option>
+    </select>
+    <input type="submit" value="Search"/>
+  </form>
 
-  <input name="phone" type="text" maxlength="10" size="10"  value="Email"><br />
-
-  Gender:
-  <input name="sex" type="radio" value="Male"/>  Male
-  <input name="sex" type="radio" value="Female"/>  Female<br />
-
-  <input name="birth " type="text" maxlength="20" size="10" value="Date of birth"/><br />
-
-  <input name="submit" type="submit" id="" value="Register" />
-</form>
 <%@ include file="footer.jsp"%>

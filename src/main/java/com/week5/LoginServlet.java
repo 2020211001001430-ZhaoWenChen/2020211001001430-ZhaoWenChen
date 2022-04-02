@@ -12,7 +12,7 @@ import java.sql.*;
 
 @WebServlet(name = "LoginServlet",value = "/login")
 public class LoginServlet extends HttpServlet {
-    Connection conn = null;
+    Connection con = null;
         @Override
         public void init() throws ServletException{
             super.init();
@@ -23,12 +23,13 @@ public class LoginServlet extends HttpServlet {
             String password=config.getInitParameter("password");
             try {
                 Class.forName(driver);
-                conn = DriverManager.getConnection(url, username, password);
-                System.out.println("Connection -->" + conn);
+                con = DriverManager.getConnection(url, username, password);
+                System.out.println("Connection -->" + con);
             } catch (ClassNotFoundException | SQLException e) {
                 e.printStackTrace();
 
             }
+            con=(Connection)getServletContext().getAttribute("con");
         }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -36,17 +37,28 @@ public class LoginServlet extends HttpServlet {
         String username = request.getParameter("username");
         String password = request.getParameter("password");
         try {
-            Statement st = conn.createStatement();
+            Statement st = con.createStatement();
             ResultSet rs = st.executeQuery("select * from usertable where username='zhaowenchen' and password =123456 ");
             if("zhaowenchen".equals(username)&&"123456".equals(password))
-            {   PrintWriter writer =response.getWriter();
-                writer.println("Login successful");
-                writer.println("Welcome   "+username);
+            {
+                request.setAttribute("id",rs.getInt(""));
+                request.setAttribute("username",rs.getString(""));
+                request.setAttribute("password",rs.getString(""));
+                request.setAttribute("email",rs.getString(""));
+                request.setAttribute("gender",rs.getString(""));
+                request.setAttribute("birthDate",rs.getString(""));
+                request.getRequestDispatcher("userlist.jsp").forward(request,response);
+
+//                PrintWriter writer =response.getWriter();
+//                writer.println("Login successful");
+//                writer.println("Welcome   "+username);
             }
             else
-            {   PrintWriter writer =response.getWriter();
-
-                writer.println("Username or password Error");
+            {
+                request.setAttribute("message","Username or Password Error!!!");
+                request.getRequestDispatcher("login.jsp").forward(request,response);
+//                PrintWriter writer =response.getWriter();
+//                writer.println("Username or password Error");
             }
         }
         catch (SQLException e) {

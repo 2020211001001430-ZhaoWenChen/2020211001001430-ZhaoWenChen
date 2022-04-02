@@ -76,6 +76,27 @@
     <servlet>
         <servlet-name>LoginServlet</servlet-name>
         <servlet-class>com.week5.LoginServlet</servlet-class>
+        <init-param>
+            <param-name>driver</param-name>
+            <param-value>com.microsoft.sqlserver.jdbc.SQLServerDriver</param-value>
+        </init-param>
+        <init-param>
+            <param-name>url</param-name>
+            <param-value>jdbc:sqlserver://localhost:1433;database=userdb;encrypt=false</param-value>
+        </init-param>
+        <init-param>
+            <param-name>username</param-name>
+            <param-value>sa</param-value>
+        </init-param>
+        <init-param>
+            <param-name>password</param-name>
+            <param-value>123456</param-value>
+        </init-param>
+        <load-on-startup>1</load-on-startup>
+    </servlet>
+    <servlet>
+        <servlet-name>SearchServlet</servlet-name>
+        <servlet-class>com.week6.SearchServlet</servlet-class>
     </servlet>
 
     <servlet-mapping>
@@ -106,4 +127,10 @@
         <servlet-name>LoginServlet</servlet-name>
         <url-pattern>/login</url-pattern>
     </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SearchServlet</servlet-name>
+        <url-pattern>/search</url-pattern>
+    </servlet-mapping>
+    
+
 </web-app>
