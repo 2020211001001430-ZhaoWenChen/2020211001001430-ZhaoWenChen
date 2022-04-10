@@ -1,5 +1,8 @@
 package com.week5;
 
+import com.dao.UserDao;
+import com.model.User;
+
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -36,6 +39,23 @@ public class LoginServlet extends HttpServlet {
         ServletConfig config = getServletConfig();
         String username = request.getParameter("username");
         String password = request.getParameter("password");
+
+        UserDao userDao=new UserDao();
+        try {
+            User user= userDao.findByUsernamePassword(con,username,password);
+                if(user!=null){
+                    request.setAttribute("user",user);//get user info in jsp
+                    request.getRequestDispatcher("WEB-INF/views/userInfo.jsp ").forward(request,response);
+                }else {
+                    request.setAttribute("message","Username or Password Error!!!");
+                    request.getRequestDispatcher("WEB-INF/views/login.jsp").forward(request,response);
+                }
+
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+
+
         try {
             Statement st = con.createStatement();
             ResultSet rs = st.executeQuery("select * from usertable where username='zhaowenchen' and password =123456 ");
@@ -58,7 +78,7 @@ public class LoginServlet extends HttpServlet {
                 request.setAttribute("message","Username or Password Error!!!");
                 request.getRequestDispatcher("login.jsp").forward(request,response);
 //                PrintWriter writer =response.getWriter();
-//                writer.println("Username or password Error");
+ //                writer.println("Username or password Error");
             }
         }
         catch (SQLException e) {
@@ -69,6 +89,7 @@ public class LoginServlet extends HttpServlet {
 
     protected void doGet (HttpServletRequest request, HttpServletResponse response) throws
         ServletException, IOException {
+            request.getRequestDispatcher("WEB-INF/views/login.jsp").forward(request,response);
 
         }
 
