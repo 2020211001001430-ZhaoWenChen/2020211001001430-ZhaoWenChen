@@ -15,10 +15,31 @@
     }
 %>
 
+<%
+    Cookie[] allCookies=request.getCookies();
+    String username="",password="",rememberMeVale="";
+    if(allCookies!=null){
+        for (Cookie c:allCookies){
+            if (c.getName().equals("cUsername")){
+                //get values of this cookies
+                username=c.getValue();
+            }
+                    if (c.getName().equals("cPassword")){
+                //get values of this cookies
+                password=c.getValue();
+            }
+            if (c.getName().equals("cRememberMe")){
+                //get values of this cookies
+                rememberMeVale=c.getValue();
+            }
+        }
+    }
+%>
 <form method="post" action="/login">
 
-    <input name="username " type="text" maxlength="20" size="10" value="Username"/><br />
-    <input name="password" type="text" maxlength="20" size="10" value="Password"/><br />
-    <input name="Login" type="submit" id="" value="Login" />
+    Username : <input name="username " type="text" maxlength="20" size="10" value="<%=username%>"/><br />
+    Password : <input name="password" type="text" maxlength="20" size="10" value="<%=password%>"/><br />
+    <input type="checkbox" name="rememberMe" value="1" <%=rememberMeVale.equals("1 ") ?"checked":""%>checked/>RememberMe<br/>
+    <input type="submit" value="Submit"/>
 </form>
 <%@ include file="footer.jsp"%>

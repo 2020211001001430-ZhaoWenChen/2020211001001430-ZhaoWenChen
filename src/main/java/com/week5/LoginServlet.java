@@ -6,9 +6,7 @@ import com.model.User;
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.*;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.*;
@@ -44,7 +42,32 @@ public class LoginServlet extends HttpServlet {
         try {
             User user= userDao.findByUsernamePassword(con,username,password);
                 if(user!=null){
-                    request.setAttribute("user",user);//get user info in jsp
+
+                    String rememberMe=request.getParameter("rememberMe");//1=checked,null if checked
+                    if(rememberMe!=null && rememberMe.equals("1")){
+                        //want to remember me
+                        //create 3 cookies
+                        Cookie usernameCookie =new Cookie("cUsername",user.getUsername());
+                        Cookie passwordCookie =new Cookie("cPassword",user.getPassword());
+                        Cookie rememberMeCookie =new Cookie("cRememberMe",rememberMe);
+
+                        usernameCookie.setMaxAge(5); //5 sec - test---15 days  60*60*24*15
+                        passwordCookie.setMaxAge(5);
+                        rememberMeCookie.setMaxAge(5);
+
+                        response.addCookie(usernameCookie);
+                        response.addCookie(passwordCookie);
+                        response.addCookie(rememberMeCookie);
+                    }
+
+                    HttpSession session=request.getSession();
+                    System.out.println("session id-->"+session.getId());
+                    session.setMaxInactiveInterval(10);
+
+//                    Cookie c=new Cookie("session",""+user.getId());
+//                    c.setMaxAge(10*60);
+//                    response.addCookie(c);
+                    session.setAttribute("user",user);//get user info in jsp
                     request.getRequestDispatcher("WEB-INF/views/userInfo.jsp ").forward(request,response);
                 }else {
                     request.setAttribute("message","Username or Password Error!!!");
