@@ -136,4 +136,13 @@
         <welcome-file>home</welcome-file>
     </welcome-file-list>
 
+    <filter>
+        <filter-name>HelloServlet</filter-name>
+        <filter-class>com.filter.HelloFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>HelloFilter</filter-name>
+        <url-pattern>/hello</url-pattern>
+    </filter-mapping>
+
 </web-app>
